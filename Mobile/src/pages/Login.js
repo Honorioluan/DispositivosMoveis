@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import {View,Text,Image,StyleSheet,SafeAreaView, TextInput, Touchable,TouchableOpacity} from 'react-native';
 import  AsyncStorage  from '@react-native-async-storage/async-storage';
 import api from '../service/api';
-import logo from '../../assets/logo.png'
+import logo from '../../assets/teste.png'
 
 export default function Login({ navigation }) {
     const [ra,setRa] = useState("2019073840");

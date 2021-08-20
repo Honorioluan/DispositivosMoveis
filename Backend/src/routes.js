@@ -1,9 +1,10 @@
-const Express = require('express');
-const UserController = require('../controller/User')
+const Express                 = require('express');
+const UserController          = require('../controller/User')
 const ClinicaController       = require('../controller/Clinica')
 const EspecialidadeController = require('../controller/Especialidade')
 const MedicoController        = require('../controller/Medico')
-const MedicoClinicaController        = require('../controller/MedicoClinica')
+const MedicoClinicaController = require('../controller/MedicoClinica')
+const MateriaController       = require('../controller/Materia')
 
 const routes = Express.Router();
 
@@ -36,6 +37,11 @@ routes.get('/medico',MedicoController.index)
 routes.post('/medico',MedicoController.store)
 routes.put('/medico', MedicoController.update)
 routes.delete('/medico', MedicoController.delete)
+
+routes.get('/materia',MateriaController.index)
+routes.post('/materia',MateriaController.store)
+routes.put('/materia', MateriaController.update)
+routes.delete('/materia', MateriaController.delete)
 
 
 
