@@ -5,6 +5,7 @@ const EspecialidadeController = require('../controller/Especialidade')
 const MedicoController        = require('../controller/Medico')
 const MedicoClinicaController = require('../controller/MedicoClinica')
 const MateriaController       = require('../controller/Materia')
+const NotasController         = require('../controller/Notas')
 
 const routes = Express.Router();
 
@@ -42,6 +43,11 @@ routes.get('/materia',MateriaController.index)
 routes.post('/materia',MateriaController.store)
 routes.put('/materia', MateriaController.update)
 routes.delete('/materia', MateriaController.delete)
+
+routes.get('/notas',NotasController.index)
+routes.post('/notas',NotasController.store)
+routes.put('/notas',NotasController.update)
+routes.delete('/notas',NotasController.delete)
 
 
 

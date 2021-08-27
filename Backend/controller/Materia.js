@@ -4,7 +4,7 @@ const Materia = require('../model/Materia')
 module.exports = {
 
     async index(req,res){
-        let materias = await Materia.find().sort({name:1})
+        let materias = await Materia.find(req._id);
         return res.json(materias)
     },
     

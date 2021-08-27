@@ -7,6 +7,7 @@ import Especialidades from './pages/Especialidades';
 import Medicos from './pages/Medicos';
 import Clinicas from './pages/Clinicas';
 import Usuario from './pages/Usuario';
+import Notas from './pages/Notas';
 
 
 export default Routes = createAppContainer(
@@ -17,5 +18,6 @@ export default Routes = createAppContainer(
         Medicos,
         Clinicas,
         Usuario,
+        Notas,
     })
 )
