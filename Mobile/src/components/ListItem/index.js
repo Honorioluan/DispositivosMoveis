@@ -30,8 +30,9 @@ export default function ListItem({data, handleLeft, handleRight}){
         >
             <View style = {styles.container}>
                 <Text style ={styles.text}>{data.name}</Text>
-                <Text style={styles.text}> {data._id}</Text>
+                
             </View>
+            
         </Swipeable>
     )
 }

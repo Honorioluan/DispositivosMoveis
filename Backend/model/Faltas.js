@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const NotasSchema = new mongoose.Schema({
+const FaltasSchema = new mongoose.Schema({
   Bim1: Number,
   Bim2 : Number,
   Bim3 : Number,
@@ -10,4 +10,4 @@ const NotasSchema = new mongoose.Schema({
 
 })
 
-module.exports = mongoose.model('Notas', NotasSchema);
+module.exports = mongoose.model('Faltas', FaltasSchema);

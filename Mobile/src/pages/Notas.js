@@ -4,20 +4,48 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 import { Icon } from 'react-native-elements'
 import avatar from "../../assets/avatar.jpeg"
 import api from '../service/api'
+import ListaItem from '../components/ListaItem';
+
+
+
 
 
 export default function Index({ navigation }) {
-    const [user, setUser] = useState('');
-  
-    AsyncStorage.getItem('@user').then(user => {
-      if(!user){
-        navigation.navigate("Login")
+    const [user, setUser] = useState('')
+    const [notas, setNotas] = useState('')
+    
+    async function listaNotas(){
+      const notas = await api.get('/notas')
+      console.log(notas.data)
+      if(notas.status == 200){
+        setNotas(notas.data)
+        
       }else{
+        let msgError = response.data;
+        console.log(msgError.mensagem);
+      }
+    }
+
+   
+    useEffect(() => {    
+      if(!notas){
+        listaNotas()
         
-        setUser(JSON.parse(user))
-        
-       }
+      
+      }
+      AsyncStorage.getItem('@user').then(user => {
+        if(!user){
+          navigation.navigate("Login")
+        }else{
+          
+          setUser(JSON.parse(user))
+          
+         }
+      })
     })
+     
+
+  
   
     function logoff(){
       AsyncStorage.removeItem('@user'); 
@@ -47,17 +75,26 @@ export default function Index({ navigation }) {
       </View>
       </View>
     </View>
-  <View>
-      <Text>
-        Teste
-        </Text>
+    <View>
+      <FlatList
+        data = {notas}
+        keyExtractor = {item => item._id}
+        renderItem = {({item})=> (
+        <ListaItem
+          data = {item}
+         
+        />
+        )}
+        ItemSeparatorComponent = {()=> <Separator/>}
+      />
+      
       </View>
     </View>
     
-    );
-  
-}
-  const Separator = () => <View style ={{flex : 1 , height: 2 , backgroundColor: '#DDD'}}></View>
+   );
+ }
+
+  const Separator = () => <View style ={{flex : 0 , height: 1 , backgroundColor: '#DDD'}}></View>
 
   const styles = StyleSheet.create({
     container:{
@@ -66,9 +103,9 @@ export default function Index({ navigation }) {
     },
 
     header: {
-      marginTop: 40,
+      marginTop: 30,
       flexDirection: "row",
-      paddingVertical: 10,
+      paddingVertical: 5,
       width: "100%",
       paddingHorizontal: 10
       

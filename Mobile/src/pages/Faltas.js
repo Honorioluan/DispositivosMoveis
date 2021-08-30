@@ -1,55 +1,38 @@
 import React, { useEffect, useState } from 'react';
-import {View, Image,Text, StyleSheet,TouchableOpacity, FlatList, SegmentedControlIOSBase} from 'react-native';
+import {View, Image,Text, StyleSheet,TouchableOpacity, FlatList} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { Icon } from 'react-native-elements'
 import avatar from "../../assets/avatar.jpeg"
 import api from '../service/api'
-import ListItem from '../components/ListItem';
-
-
+import ListasItem from '../components/ListasItem';
 
 
 
 
 
 export default function Index({ navigation }) {
-    const [user, setUser] = useState('');
-    const [materias, setMaterias] = useState('')
+    const [user, setUser] = useState('')
+    const [faltas, setFaltas] = useState('')
     
-    async function listaMaterias(){
-      const materias = await api.get('/materia')
-      console.log(materias.data)
-      if(materias.status == 200){
-        setMaterias(materias.data)
+    async function listaFaltas(){
+      const faltas = await api.get('/faltas')
+      console.log(faltas.data)
+      if(faltas.status == 200){
+        setFaltas(faltas.data)
         
       }else{
         let msgError = response.data;
         console.log(msgError.mensagem);
       }
     }
-    /*
-    async function Notas(){
-      setMaterias()
-      const notas = await api.get('/notas')
-      console.log(notas.data)
-      if( == ){
-        return(navigation.navigate('Notas'))
-      }else{
-        return('null')
-      }
-    }
- */
-    
+
    
-    
     useEffect(() => {    
-      if(!materias){
-        listaMaterias()
+      if(!faltas){
+        listaFaltas()
         
-      }
-
       
-
+      }
       AsyncStorage.getItem('@user').then(user => {
         if(!user){
           navigation.navigate("Login")
@@ -60,6 +43,10 @@ export default function Index({ navigation }) {
          }
       })
     })
+     
+
+  
+  
     function logoff(){
       AsyncStorage.removeItem('@user'); 
       navigation.navigate('Login')
@@ -88,28 +75,26 @@ export default function Index({ navigation }) {
       </View>
       </View>
     </View>
-  <View>
+    <View>
       <FlatList
-        data = {materias}
+        data = {faltas}
         keyExtractor = {item => item._id}
         renderItem = {({item})=> (
-        <ListItem
+        <ListasItem
           data = {item}
-          handleLeft = {()=> navigation.navigate('Notas')}
-          handleRight = {()=> navigation.navigate('Faltas')}
+         
         />
         )}
         ItemSeparatorComponent = {()=> <Separator/>}
       />
       
       </View>
-      
     </View>
     
-    );
-  }
+   );
+ }
 
-  const Separator = () => <View style ={{flex : 1 , height: 2 , backgroundColor: '#DDD'}}></View>
+  const Separator = () => <View style ={{flex : 0 , height: 1 , backgroundColor: '#DDD'}}></View>
 
   const styles = StyleSheet.create({
     container:{
@@ -118,9 +103,9 @@ export default function Index({ navigation }) {
     },
 
     header: {
-      marginTop: 40,
+      marginTop: 30,
       flexDirection: "row",
-      paddingVertical: 10,
+      paddingVertical: 1,
       width: "100%",
       paddingHorizontal: 10
       

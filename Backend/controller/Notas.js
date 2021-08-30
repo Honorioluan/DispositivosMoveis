@@ -4,10 +4,11 @@ const Notas = require('../model/Notas')
 module.exports = {
 
     async index(req,res){
-        let notas = await Notas.findById(req.materia_id)
+        let notas = await Notas.find();
         return res.json(notas)
     },
-    
+
+  
     async store(req,res){
         let notas = req.body;
         notas = await Notas.create(notas)
