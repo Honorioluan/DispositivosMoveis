@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {View, Image,Text, StyleSheet,TouchableOpacity, FlatList, SegmentedControlIOSBase} from 'react-native';
+import {View, Image,Text, StyleSheet,TouchableOpacity, FlatList, SegmentedControlIOSBase, ScrollView,} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { Icon } from 'react-native-elements'
 import avatar from "../../assets/avatar.jpeg"
@@ -70,6 +70,7 @@ export default function Index({ navigation }) {
     }
   
     return (
+    
       <View style={styles.container}>
         <View style={styles.header}>
           <View>

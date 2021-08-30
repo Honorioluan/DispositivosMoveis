@@ -8,10 +8,10 @@ export default function listasItem({data}){
     return (
         <View style = {styles.container}>
             <Text style ={styles.text}>{data.nome_materia}</Text>
-            <Text style ={styles.text}>Faltas 1 Bimestre: {data.Bim1}</Text>
-            <Text style ={styles.text}>Faltas 2 Bimestre: {data.Bim2}</Text>
-            <Text style ={styles.text}>Faltas 3 Bimestre: {data.Bim3}</Text>
-            <Text style ={styles.text}>Faltas 4 Bimestre: {data.Bim4}</Text>
+            <Text style ={styles.text}>Faltas: 1-Bimestre: {data.Bim1}</Text>
+            <Text style ={styles.text}>Faltas: 2-Bimestre: {data.Bim2}</Text>
+            <Text style ={styles.text}>Faltas: 3-Bimestre: {data.Bim3}</Text>
+            <Text style ={styles.text}>Faltas: 4-Bimestre: {data.Bim4}</Text>
         </View>
     )
 }

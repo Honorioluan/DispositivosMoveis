@@ -8,10 +8,10 @@ export default function listaItem({data}){
     return (
         <View style = {styles.container}>
             <Text style ={styles.text}>{data.nome_materia}</Text>
-            <Text style ={styles.text}>Nota 1 Bimestre: {data.Bim1}</Text>
-            <Text style ={styles.text}>Nota 2 Bimestre: {data.Bim2}</Text>
-            <Text style ={styles.text}>Nota 3 Bimestre: {data.Bim3}</Text>
-            <Text style ={styles.text}>Nota 4 Bimestre: {data.Bim4}</Text>
+            <Text style ={styles.text}>Nota: 1-Bimestre: {data.Bim1}</Text>
+            <Text style ={styles.text}>Nota: 2-Bimestre: {data.Bim2}</Text>
+            <Text style ={styles.text}>Nota: 3-Bimestre: {data.Bim3}</Text>
+            <Text style ={styles.text}>Nota: 4-Bimestre: {data.Bim4}</Text>
         </View>
     )
 }
