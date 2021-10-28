@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import {View, Image,Text, StyleSheet,TouchableOpacity, FlatList, SegmentedControlIOSBase, ScrollView,} from 'react-native';
+import {View, Image,Text, StyleSheet,TouchableOpacity, FlatList} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { Icon } from 'react-native-elements'
 import avatar from "../../assets/avatar.jpeg"
 import api from '../service/api'
-import ListItem from '../components/ListItem';
-
+import ListPro from '../components/ListPro';
 
 
 
@@ -13,43 +12,28 @@ import ListItem from '../components/ListItem';
 
 
 export default function Index({ navigation }) {
-    const [user, setUser] = useState('');
-    const [materias, setMaterias] = useState('')
-    
-    async function listaMaterias(){
-      const materias = await api.get('/materia')
-      console.log(materias.data)
-      if(materias.status == 200){
-        setMaterias(materias.data)
-        
-      }else{
-        let msgError = response.data;
-        console.log(msgError.mensagem);
-      }
-    }
-    /*
-    async function Notas(){
-      setMaterias()
-      const notas = await api.get('/notas')
-      console.log(notas.data)
-      if( == ){
-        return(navigation.navigate('Notas'))
-      }else{
-        return('null')
-      }
-    }
- */
-    
-   
-    
-    useEffect(() => {    
-      if(!materias){
-        listaMaterias()
-        
-      }
-
+  const [user, setUser] = useState('');
+  const [protocolos, setProtocolo] = useState('')
+  
+  async function listaProt(){
+    const protocolos = await api.get('/protocolo')
+    console.log(protocolos.data)
+    if(protocolos.status == 200){
+      setProtocolo(protocolos.data)
       
+    }else{
+      let msgError = response.data;
+      console.log(msgError.mensagem);
+    }
+  }
 
+   
+    useEffect(() => {    
+      if(!protocolos){
+        listaProt()
+        
+      
+      }
       AsyncStorage.getItem('@user').then(user => {
         if(!user){
           navigation.navigate("Login")
@@ -60,6 +44,10 @@ export default function Index({ navigation }) {
          }
       })
     })
+     
+
+  
+  
     function logoff(){
       AsyncStorage.removeItem('@user'); 
       navigation.navigate('Login')
@@ -68,14 +56,8 @@ export default function Index({ navigation }) {
     function settings(){
       navigation.navigate('Usuario')
     }
-
-    function protocolo() {
-      navigation.navigate('Protocolo');
-    }
-  
   
     return (
-    
       <View style={styles.container}>
         <View style={styles.header}>
           <View>
@@ -92,39 +74,28 @@ export default function Index({ navigation }) {
        <View style={styles.areaConfig}> 
          <Icon onPress ={settings} style={styles.config} name='cog' type='font-awesome' />
       </View>
-
-        
       </View>
     </View>
     <View>
-        <TouchableOpacity onPress={protocolo}>
-          <Text style={styles.protocoloTextButton}>
-            Protocolos
-          </Text>
-        </TouchableOpacity>
-      </View>
-  <View>
       <FlatList
-        data = {materias}
+        data = {protocolos}
         keyExtractor = {item => item._id}
         renderItem = {({item})=> (
-        <ListItem
+        <ListPro
           data = {item}
-          handleLeft = {()=> navigation.navigate('Notas')}
-          handleRight = {()=> navigation.navigate('Faltas')}
+         
         />
         )}
         ItemSeparatorComponent = {()=> <Separator/>}
       />
       
       </View>
-      
     </View>
     
-    );
-  }
+   );
+ }
 
-  const Separator = () => <View style ={{flex : 1 , height: 2 , backgroundColor: '#DDD'}}></View>
+  const Separator = () => <View style ={{flex : 0 , height: 1 , backgroundColor: '#DDD'}}></View>
 
   const styles = StyleSheet.create({
     container:{
@@ -133,9 +104,9 @@ export default function Index({ navigation }) {
     },
 
     header: {
-      marginTop: 40,
+      marginTop: 30,
       flexDirection: "row",
-      paddingVertical: 10,
+      paddingVertical: 5,
       width: "100%",
       paddingHorizontal: 10
       

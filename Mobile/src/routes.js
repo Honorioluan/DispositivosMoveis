@@ -9,6 +9,7 @@ import Clinicas from './pages/Clinicas';
 import Usuario from './pages/Usuario';
 import Notas from './pages/Notas';
 import Faltas from './pages/Faltas';
+import Protocolo from './pages/Protocolo';
 
 
 export default Routes = createAppContainer(
@@ -21,5 +22,6 @@ export default Routes = createAppContainer(
         Usuario,
         Notas,
         Faltas,
+        Protocolo,
     })
 )
